@@ -1,10 +1,9 @@
 # encoding: utf-8
 
-import time
 import logging
 import os
 
-from flask import Flask, g, request
+from flask import Flask
 
 import log
 from ping import bp as ping_bp
@@ -20,18 +19,6 @@ def hello_world():
 
 # register buleprints
 app.register_blueprint(ping_bp, url_prefix='/ping')
-
-
-@app.before_request
-def attach_request_time():
-    g.begin_at = time.time()
-
-
-@app.after_request
-def calculate_latency(response):
-    elasped = time.time() - g.begin_at
-    logger.info("url: %s, cost: %dms", request.url, elasped *1000)
-    return response
 
 
 if __name__ == "__main__":

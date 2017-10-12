@@ -36,7 +36,7 @@ def _gen_console_logging_config():
         },
         'formatters': {
             'verbose': {
-                'format': '%(name)s[%(process)d]: %(message)s',
+                'format': '%(asctime)s - %(name)s - %(levelname)s',
             },
         },
     }
