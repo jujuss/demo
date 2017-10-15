@@ -27,6 +27,8 @@ def _gen_console_logging_config():
                 'propagate': True
             },
         },
+        # Handler 处理器，将（记录器产生的）日志记录发送至合适的目的地
+        # 创建StreamHandler之后，可以设置日志级别，设置格式化器Formatter，增加或删除过滤器Filter
         'handlers': {
             'default': {
                 'level': logging.DEBUG,
@@ -34,9 +36,10 @@ def _gen_console_logging_config():
                 'class': 'logging.StreamHandler',
             },
         },
+        # Formatter 格式化器，指明了最终输出中日志记录的布局
         'formatters': {
             'verbose': {
-                'format': '%(asctime)s - %(name)s - %(levelname)s',
+                'format': '%(asctime)s  %(name)s  %(levelname)s: %(message)s',
             },
         },
     }

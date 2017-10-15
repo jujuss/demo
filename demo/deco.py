@@ -44,17 +44,17 @@ def log_deco(func):
                 normal_meta = '%s, return %r' % (normal_meta, rv)
                 logger.info('Call Ok: %s, %s' % (normal_meta, time_meta))
             else:
-                logger.warning(
+                logger.error(
                     'Call Failed: %s, %s' % (normal_meta, time_meta),
                     exc_info=True
                 )
 
         try:
             rv = func(*args, **kwargs)
+            do_log(is_succeed=True, rv=rv)
         except:
             do_log(is_succeed=False)
             raise
-        else:
-            do_log(is_succeed=True, rv=rv)
+
         return rv
     return wrapper
